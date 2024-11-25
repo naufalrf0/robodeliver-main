@@ -2448,7 +2448,7 @@ ul#top_menu li a.login:before {
 }
 .hero_single.version_2 {
   height: 620px;
-  background: #faf3cc url(https://www.ansonika.com/fooyes/img/home_section_2.jpg) center center no-repeat;
+  background: #faf3cc url('https://poodies.candrawjy.my.id/assets/img/banner/banner-makanan.png') center center no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

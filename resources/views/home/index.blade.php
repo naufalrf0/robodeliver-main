@@ -10,7 +10,7 @@
 <x-home-layout :title="'Robodeliver - Pemesanan Makanan Berbasis Robot'" :metaDescription="'Robodeliver adalah solusi pemesanan makanan berbasis robot dengan pengantaran otomatis dan real-time tracking.'" :metaAuthor="'Robodeliver Inc.'">
 
     <!-- START SLIDER -->
-    <div class="hero_single version_2 kenburns_slider" style="background: none;">
+    <div class="hero_single version_2 kenburns_slider">
         <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
             <div class="container">
                 <div class="row justify-content-lg-start justify-content-md-center">
