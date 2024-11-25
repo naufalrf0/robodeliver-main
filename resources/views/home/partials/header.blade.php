@@ -42,7 +42,7 @@
                 </li>
             @else
                 <li>
-                    <a href="{{ route('login') }}" id="sign-in" class="btn_1 gradient small">Masuk/Daftar</a>
+                    <a href="{{ route('login') }}" class="btn_1 gradient small text-white">Masuk/Daftar</a>
                 </li>
             @endauth
         </ul>

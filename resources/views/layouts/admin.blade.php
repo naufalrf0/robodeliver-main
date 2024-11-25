@@ -16,6 +16,8 @@
         href="{{ asset('assets/admin_layout/img/apple-touch-icon-114x114-precomposed.png') }}">
     <link rel="apple-touch-icon" sizes="144x144"
         href="{{ asset('assets/admin_layout/img/apple-touch-icon-144x144-precomposed.png') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     @include('admin.partials.styles')
 </head>
 
@@ -29,12 +31,13 @@
     <div class="content-wrapper">
         <div class="container-fluid">
             @include('admin.partials.breadcrumbs')
-            @yield('content')
+            {{ $slot }}
         </div>
         @include('admin.partials.footer')
 
 
         @include('admin.partials.scripts')
+       
 </body>
 
 </html>

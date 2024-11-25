@@ -8,10 +8,16 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CompleteProfileController;
-use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('complete-profile', [CompleteProfileController::class, 'create'])
+        ->name('completeprofile')
+        ->middleware('auth');
+
+    Route::post('complete-profile', [CompleteProfileController::class, 'store'])->middleware('auth');
 
 Route::middleware('guest')->group(function () {
     Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('social.login');
@@ -27,6 +33,8 @@ Route::middleware('guest')->group(function () {
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+    
+
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
 
@@ -40,7 +48,7 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'ensureuserinfo'])->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -61,6 +69,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-   
 });

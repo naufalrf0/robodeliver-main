@@ -12,7 +12,7 @@ class EnsureUserInfoIsComplete
 {
     $user = Auth::user();
 
-    if ($user->hasRole('customer')) {
+    if ($user->hasRoleName('customer')) {
         if (!$user->userInfo && !$request->routeIs('completeprofile')) {
             return redirect()->route('completeprofile')->with('warning', 'Please complete your profile first.');
         }

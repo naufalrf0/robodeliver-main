@@ -11,6 +11,11 @@ class UserWallet extends Model
 
     protected $fillable = ['user_id', 'balance'];
 
+    protected $casts = [
+        'balance' => 'decimal:2',
+    ];
+
+    // Relationships
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -19,5 +24,20 @@ class UserWallet extends Model
     public function transactions()
     {
         return $this->hasMany(WalletTransaction::class);
+    }
+
+    // Methods
+    public function deposit(float $amount): void
+    {
+        $this->increment('balance', $amount);
+    }
+
+    public function withdraw(float $amount): bool
+    {
+        if ($this->balance >= $amount) {
+            $this->decrement('balance', $amount);
+            return true;
+        }
+        return false;
     }
 }

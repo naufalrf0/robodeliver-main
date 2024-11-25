@@ -12,15 +12,26 @@ class Merchant extends Model
 
     protected $fillable = [
         'user_id',
-        'shop_logo',
-        'shop_name',
-        'shop_desc',
-        'status'
+        'name',
+        'address',
+        'latitude',
+        'longitude',
+        'image_url',
+        'description',
+        'status',
+        'rating',
     ];
 
-    public function user()
+    protected $casts = [
+        'latitude' => 'double',
+        'longitude' => 'double',
+        'rating' => 'float',
+    ];
+
+    // Relationships
+    public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function products()
@@ -28,8 +39,20 @@ class Merchant extends Model
         return $this->hasMany(MerchantProduct::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function orders()
     {
-        return $this->hasMany(UserOrder::class);
+        return $this->hasManyThrough(
+            Order::class,       
+            MerchantProduct::class, 
+            'merchant_id',  
+            'product_id',   
+            'id',         
+            'id'                
+        );
     }
 }

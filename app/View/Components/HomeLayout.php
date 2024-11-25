@@ -21,7 +21,7 @@ class HomeLayout extends Component
      */
     public function __construct(
         $title = 'Home',
-        $metaDescription = 'Default Description',
+        $metaDescription = 'Discover the best food and restaurants with Robodeliver.',
         $metaAuthor = 'Robodeliver Inc.'
     ) {
         $this->title = $title;
@@ -31,11 +31,11 @@ class HomeLayout extends Component
         // Navigation for header
         $this->headerNavigation = [
             ['name' => 'Beranda', 'route' => 'home'],
-            ['name' => 'Restoran', 'route' => '#', 'children' => [
-                ['name' => 'Pesan Makanan', 'route' => 'order.food'],
-                ['name' => 'Daftar Sebagai Restoran', 'route' => 'restaurant.add'],
+            ['name' => 'Restoran', 'route' => 'merchants.home.index', 'children' => [
+                ['name' => 'Pesan Makanan', 'route' => 'merchants.home.index'],
+                ['name' => 'Daftar Sebagai Restoran', 'route' => 'merchant.register'],
             ]],
-            ['name' => 'Tentang', 'route' => 'about'],
+            ['name' => 'Tentang Kami', 'route' => 'about'],
             ['name' => 'Kontak', 'route' => 'contact'],
         ];
 
@@ -43,14 +43,8 @@ class HomeLayout extends Component
         $this->footerNavigation = [
             'quick_links' => [
                 ['name' => 'Tentang Kami', 'route' => 'about'],
-                ['name' => 'Daftarkan Restoran Anda', 'route' => 'restaurant.add'],
+                ['name' => 'Daftarkan Restoran Anda', 'route' => 'merchant.register'],
                 ['name' => 'FAQ & Bantuan', 'route' => 'help'],
-            ],
-            'categories' => [
-                ['name' => 'Top Categories', 'route' => 'categories.top'],
-                ['name' => 'Best Rated', 'route' => 'categories.best-rated'],
-                ['name' => 'Best Price', 'route' => 'categories.best-price'],
-                ['name' => 'Latest Submissions', 'route' => 'categories.latest'],
             ],
         ];
     }

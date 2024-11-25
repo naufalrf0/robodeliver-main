@@ -12,19 +12,25 @@ class MerchantProduct extends Model
 
     protected $fillable = [
         'merchant_id',
-        'product_images',
-        'product_name',
-        'product_price',
-        'categories'
+        'name',
+        'price',
+        'description',
+        'category_id',
+        'image_url',
     ];
 
+    protected $casts = [
+        'price' => 'decimal:2',
+    ];
+
+    // Relationships
     public function merchant()
     {
         return $this->belongsTo(Merchant::class);
     }
 
-    public function ratings()
+    public function category()
     {
-        return $this->hasMany(ProductRating::class);
+        return $this->belongsTo(Category::class);
     }
 }

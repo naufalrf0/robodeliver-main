@@ -14,11 +14,16 @@ class WalletTransaction extends Model
         'transaction_type',
         'amount',
         'transaction_status',
-        'reference'
+        'reference',
     ];
 
+    protected $casts = [
+        'amount' => 'decimal:2',
+    ];
+
+    // Relationships
     public function wallet()
     {
-        return $this->belongsTo(UserWallet::class);
+        return $this->belongsTo(UserWallet::class, 'user_wallet_id');
     }
 }

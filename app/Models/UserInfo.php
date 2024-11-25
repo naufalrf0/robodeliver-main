@@ -10,16 +10,25 @@ class UserInfo extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'user_id',
-        'phone_number',
-        'address',
-        'latitude',
-        'longitude'
+    protected $fillable = ['user_id', 'phone_number', 'address', 'latitude', 'longitude'];
+
+    protected $casts = [
+        'latitude' => 'double',
+        'longitude' => 'double',
     ];
 
+    // Relationships
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    // Query Scopes
+    public function scopeNearby($query, $latitude, $longitude, $radius = 10)
+    {
+        return $query->whereRaw(
+            '(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) < ?',
+            [$latitude, $longitude, $latitude, $radius]
+        );
     }
 }
